@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hendra Prihandono</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+        header {
+            background-color: #0808de;
+            color: rgb(176, 176, 176);
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            margin: 15px 0;
+        }
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #e10202;
+        }
+        main {
+            background-color: rgb(255, 255, 255);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Selamat Datang Di Website Hendra Prihandono</h1>
+</header>
+
+<nav>
+    <a href="#home">Beranda</a>
+    <a href="#project">Project</a>
+    <a href="#about">Tentang</a>
+    <a href="#contact">Kontak</a>
+</nav>
+
+<main>
+    <section id="home">
+        <h2>Beranda</h2>
+        <p>Hai, nama saya Hendra Prihandono,
+            saya adalah seorang mahasiswa STIKOM Muhammadiyah Batam,
+            saya juga bekerja sebagai mekanik alat berat forklift electric di PT.Kobexindo Equipment.
+        </p>
+    </section>
+    <section id="project">
+        <h2>Project</h2>
+        <p><style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+                background-color: #ffffff;
+            }
+            nav {
+                margin-bottom: 20px;
+            }
+            nav a {
+                margin: 0 10px;
+                text-decoration: none;
+                color: rgb(141, 105, 213);
+            }
+            .program {
+                background-color: rgb(141, 105, 213);
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .hidden {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+    
+    <h3>Menu Program</h3>
+    <nav>
+        <a href="#" onclick="showProgram('program1')">Program 1: Luas Persegi Panjang</a>
+        <a href="#" onclick="showProgram('program2')">Program 2: Konversi Suhu</a>
+        <a href="#" onclick="showProgram('program3')">Program 3: Konversi Nilai Ujian</a>
+    </nav>
+    
+    <div id="program1" class="program hidden">
+        <h2>Program 1: Luas Persegi Panjang</h2>
+        <label for="panjang">Masukkan Panjang:</label>
+        <input type="number" id="panjang" placeholder="Panjang">
+        <br><br>
+        <label for="lebar">Masukkan Lebar:</label>
+        <input type="number" id="lebar" placeholder="Lebar">
+        <br><br>
+        <button onclick="hitungLuas()">Hitung Luas</button>
+        <div id="result1" class="result"></div>
+    </div>
+    
+    <div id="program2" class="program hidden">
+        <h2>Program 2: Konversi Suhu Celcius ke Fahrenheit</h2>
+        <label for="celcius">Nilai Suhu Celcius:</label>
+        <input type="number" id="celcius" placeholder="Celcius">
+        <br><br>
+        <button onclick="konversiSuhu()">Konversi</button>
+        <div id="result2" class="result"></div>
+    </div>
+    
+    <div id="program3" class="program hidden">
+        <h2>Program 3: Konversi Nilai Ujian</h2>
+        <label for="nilai">Masukkan Nilai:</label>
+        <input type="number" id="nilai" placeholder="Nilai">
+        <br><br>
+        <button onclick="konversiNilai()">Konversi</button>
+        <div id="result3" class="result"></div>
+    </div>
+    
+    <script>
+        function showProgram(programId) {
+            // Sembunyikan semua program
+            const programs = document.querySelectorAll('.program');
+            programs.forEach(prog => prog.classList.add('hidden'));
+            
+            // Tampilkan program yang dipilih
+            document.getElementById(programId).classList.remove('hidden');
+        }
+    
+        function hitungLuas() {
+            const panjang = parseInt(document.getElementById('panjang').value);
+            const lebar = parseInt(document.getElementById('lebar').value);
+            const result = document.getElementById('result1');
+    
+            if (isNaN(panjang) || isNaN(lebar) || panjang <= 0 || lebar <= 0) {
+                result.innerHTML = 'Masukkan nilai yang valid.';
+                return;
+            }
+    
+            const luas = panjang * lebar;
+            result.innerHTML = 'Luas Persegi Panjang: ' + luas;
+        }
+    
+        function konversiSuhu() {
+            const c = parseFloat(document.getElementById('celcius').value);
+            const result = document.getElementById('result2');
+    
+            if (isNaN(c)) {
+                result.innerHTML = 'Masukkan suhu yang valid.';
+                return;
+            }
+    
+            const f = (9 / 5) * c + 32;
+            result.innerHTML = 'Nilai Suhu Fahrenheit: ' + f.toFixed(2);
+        }
+    
+        function konversiNilai() {
+            const nilai = parseInt(document.getElementById('nilai').value);
+            const result = document.getElementById('result3');
+            let jawaban;
+    
+            if (isNaN(nilai) || nilai < 0 || nilai > 100) {
+                jawaban = 'Angka Tidak Valid!';
+            } else if (nilai >= 80) {
+                jawaban = 'A';
+            } else if (nilai >= 65) {
+                jawaban = 'B';
+            } else if (nilai >= 55) {
+                jawaban = 'C';
+            } else if (nilai >= 45) {
+                jawaban = 'D';
+            } else {
+                jawaban = 'E';
+            }
+    
+            result.innerHTML = 'Nilai Huruf: ' + jawaban;
+        }
+    </script>
+    
+    </body> </p>
+    </section>
+
+    <section id="about">
+        <h2>Tentang</h2>
+        <p>Web ini bertujuan sebagai sarana pembelajaran saya.</p>
+    </section>
+
+    <section id="contact">
+        <h2>Kontak</h2>
+        <p>Untuk informasi lebih lanjut, silakan hubungi kami di hprihandono@gmail.com.</p>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2024 Hendra Prihandono</p>
+</footer>
+
+</body>
+</html>
